@@ -159,9 +159,9 @@ minutes. Stop scope expansion and preserve this working deployment.
 
 **Purpose**: Increase confidence and presentation quality only after the public MVP smoke test passes.
 
-- [ ] T042 Add React Testing Library and Playwright dependencies plus `test:component` and `test:e2e` scripts in `package.json` and `package-lock.json`
+- [X] T042 Add only the requested Playwright dependency and `test:e2e` script in `package.json` and `package-lock.json`; defer React Testing Library until component tests are explicitly requested
 - [ ] T043 [P] Add component-test DOM matchers and environment configuration in `src/test/setup.ts` and `vite.config.ts`
-- [ ] T044 Add the deployed-priority Playwright golden-flow coverage for demo math, option selection, cliff crossing, Safe Bid, disclaimer, and manual fallback in `tests/golden-flow.spec.ts`
+- [X] T044 Add the deployed-priority Playwright golden-flow coverage for demo math, option selection, cliff crossing, Safe Bid, disclaimer, and manual fallback in `tests/golden-flow.spec.ts`
 - [ ] T045 [P] Add focused component tests for input validation and external-reference failure fallback in `src/components/OrderInputs.test.tsx`
 - [ ] T046 [P] Add focused component tests for unknown-cost wording, disclosed ranking/tie, and selection in `src/components/PaymentComparison.test.tsx`
 - [ ] T047 [P] Add focused component tests for accessible threshold states and invalid Safe Bid output in `src/components/ProfitCliff.test.tsx` and `src/components/SafeBid.test.tsx`
