@@ -146,9 +146,9 @@ buildable, publicly reachable, and smoke-tested.
 - [X] T036 Run the default-demo hand calculation in `specs/001-fx-margin-dashboard/quickstart.md` and confirm every displayed value against `src/test/fixtures.ts`
 - [X] T037 Run `npm run test`, `npm run lint`, and `npm run build` from repository root `.` and fix only correctness or build-blocking failures in the affected source/configuration files
 - [X] T038 Review `git diff` for credentials, currency-direction reversals, generated build output, and scope violations, then create a pre-deployment Git checkpoint from repository root `.`
-- [ ] T039 Verify or minimally configure the intended GitHub remote from repository root `.`, then push the reviewed checkpoint and confirmed branch without adding Git workflow complexity
-- [ ] T040 Verify that repository root `.` is the intended Vercel deployment path, then link only if required and deploy the production build without adding secrets, a backend, persistence, or infrastructure
-- [ ] T041 Smoke-test the public Vercel URL against the default golden flow, manual-rate fallback, scenario disclaimer, Profit Cliff crossing, Safe Bid, mobile width, and refresh behavior; apply any release-blocking fix in the affected `src/` file and repeat T037–T040
+- [X] T039 Verify or minimally configure the intended GitHub remote from repository root `.`, then push the reviewed checkpoint and confirmed branch without adding Git workflow complexity
+- [X] T040 Verify that repository root `.` is the intended Vercel deployment path, then link only if required and deploy the production build without adding secrets, a backend, persistence, or infrastructure
+- [X] T041 Smoke-test the public Vercel URL against the default golden flow, manual-rate fallback, scenario disclaimer, Profit Cliff crossing, Safe Bid, mobile width, and refresh behavior; apply any release-blocking fix in the affected `src/` file and repeat T037–T040
 
 **MVP CHECKPOINT**: A judge can complete the entire decision story on the public URL in under three
 minutes. Stop scope expansion and preserve this working deployment.
