@@ -1,5 +1,6 @@
 import { formatCad, formatPercent, formatRate } from '../domain/format'
 import type { CalculationResult, PaymentOption, PaymentResult } from '../domain/types'
+import { validateOption } from '../domain/validation'
 import { UnknownCost } from './TrustLegend'
 
 interface Props {
@@ -21,6 +22,9 @@ export function PaymentComparison({ options, results, selectedId, ranking, onOpt
       <div className="option-grid">
         {options.map((option, index) => {
           const result = results[index]
+          const errors = Object.fromEntries(
+            validateOption(option).map((error) => [error.field, error.message]),
+          )
           const selected = option.id === selectedId
           const isLowest = ranking === option.id
           return (
@@ -32,8 +36,8 @@ export function PaymentComparison({ options, results, selectedId, ranking, onOpt
               </div>
               <label className="field compact-field"><span className="field-label">Option name</span><input className="plain-input" value={option.name} onChange={(e) => onOptionChange(index, 'name', e.target.value)} /></label>
               <div className="two-columns">
-                <MiniNumber label="Quoted USD/CAD rate" value={option.quotedCadPerUsd} suffix="CAD per USD" step="0.0001" onChange={(v) => onOptionChange(index, 'quotedCadPerUsd', v)} />
-                <MiniNumber label="Known transfer fee" value={option.knownFixedFeeCad} prefix="C$" onChange={(v) => onOptionChange(index, 'knownFixedFeeCad', v)} />
+                <MiniNumber label="Quoted USD/CAD rate" value={option.quotedCadPerUsd} suffix="CAD per USD" step="0.0001" error={errors[`${option.id}.quotedCadPerUsd`]} onChange={(v) => onOptionChange(index, 'quotedCadPerUsd', v)} />
+                <MiniNumber label="Known transfer fee" value={option.knownFixedFeeCad} prefix="C$" error={errors[`${option.id}.knownFixedFeeCad`]} onChange={(v) => onOptionChange(index, 'knownFixedFeeCad', v)} />
               </div>
               {result.ok ? (
                 <dl className="metric-list">
@@ -59,8 +63,8 @@ export function PaymentComparison({ options, results, selectedId, ranking, onOpt
   )
 }
 
-function MiniNumber({ label, value, prefix, suffix, step = '0.01', onChange }: { label: string; value: number; prefix?: string; suffix?: string; step?: string; onChange: (value: number) => void }) {
-  return <label className="field compact-field"><span className="field-label">{label}</span><span className="input-shell">{prefix && <span>{prefix}</span>}<input type="number" min="0" step={step} value={Number.isFinite(value) ? value : ''} onChange={(e) => onChange(e.target.value === '' ? Number.NaN : Number(e.target.value))} />{suffix && <span>{suffix}</span>}</span></label>
+function MiniNumber({ label, value, prefix, suffix, step = '0.01', error, onChange }: { label: string; value: number; prefix?: string; suffix?: string; step?: string; error?: string; onChange: (value: number) => void }) {
+  return <label className="field compact-field"><span className="field-label">{label}</span><span className={`input-shell ${error ? 'input-error' : ''}`}>{prefix && <span>{prefix}</span>}<input type="number" min="0" step={step} value={Number.isFinite(value) ? value : ''} onChange={(e) => onChange(e.target.value === '' ? Number.NaN : Number(e.target.value))} aria-invalid={Boolean(error)} />{suffix && <span>{suffix}</span>}</span>{error && <span className="field-error">{error}</span>}</label>
 }
 
 function Metric({ label, value, strong, tone }: { label: string; value: string; strong?: boolean; tone?: 'good' | 'danger' }) {

@@ -77,3 +77,36 @@ test('protects the complete judge golden flow', async ({ page }, testInfo) => {
   }))
   expect(viewport.scrollWidth, `${testInfo.project.name} layout has horizontal overflow`).toBe(viewport.clientWidth)
 })
+
+test('surfaces invalid payment option fields and recovers immediately', async ({ page }) => {
+  await page.goto('/')
+
+  const bankCard = page.getByRole('textbox', { name: 'Option name' }).nth(0).locator('xpath=ancestor::article')
+  const quotedRate = bankCard.getByLabel('Quoted USD/CAD rate')
+  const knownFee = bankCard.getByLabel('Known transfer fee')
+
+  for (const invalidRate of ['0', '-1']) {
+    await quotedRate.fill(invalidRate)
+    await expect(quotedRate).toHaveAttribute('aria-invalid', 'true')
+    await expect(quotedRate.locator('xpath=..')).toHaveClass(/input-error/)
+    await expect(bankCard.getByText('Enter a CAD-per-USD rate greater than zero.', { exact: true })).toBeVisible()
+    await expect(bankCard.getByText('Supplier conversion', { exact: true })).toHaveCount(0)
+  }
+
+  await quotedRate.fill('1.39')
+  await expect(quotedRate).toHaveAttribute('aria-invalid', 'false')
+  await expect(bankCard.getByText('Enter a CAD-per-USD rate greater than zero.', { exact: true })).toHaveCount(0)
+  await expect(bankCard.getByText('$27,800.00', { exact: true })).toBeVisible()
+
+  await knownFee.fill('-1')
+  await expect(knownFee).toHaveAttribute('aria-invalid', 'true')
+  await expect(knownFee.locator('xpath=..')).toHaveClass(/input-error/)
+  await expect(bankCard.getByText('Known fees cannot be negative.', { exact: true })).toBeVisible()
+  await expect(bankCard.getByText('Supplier conversion', { exact: true })).toHaveCount(0)
+  await expect(bankCard).not.toContainText(/NaN|Infinity|undefined/)
+
+  await knownFee.fill('30')
+  await expect(knownFee).toHaveAttribute('aria-invalid', 'false')
+  await expect(bankCard.getByText('Known fees cannot be negative.', { exact: true })).toHaveCount(0)
+  await expect(bankCard.getByText('$4,170.00', { exact: true })).toBeVisible()
+})
