@@ -1,50 +1,72 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+- Version change: scaffold (unratified) -> 1.0.0
+- Modified principles: placeholder principles -> five initial project principles
+- Added sections: MVP Boundaries; Delivery and Verification
+- Removed sections: none
+- Follow-up TODOs: none
+-->
+# FX Margin Lens Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Financial Correctness First
+Core calculations MUST be deterministic, independently testable with hand-calculated examples,
+and correct before visual sophistication. USD/CAD MUST always mean `1 USD = X CAD`; the
+direction MUST never be reversed.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Known, Estimated, Unknown
+Every payment cost MUST be labeled **KNOWN**, **ESTIMATED**, or **UNKNOWN**. Exact values require
+supporting data; estimates require a defensible source or benchmark; hidden or intermediary costs
+MUST remain explicitly unknown. The product MUST NOT manufacture precision or claim a guaranteed
+cheapest provider when costs are incomplete; use language such as "lowest disclosed cost."
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Decision Support, Not Prediction
+Profit Cliff and Safe Bid / Safe Selling Price are the central capabilities. User-controlled rate
+scenarios MUST display: **"Scenario analysis — not an exchange-rate prediction."** Results MUST be
+explained through a plain-language Decision Lens and MUST NOT constitute AI financial advice.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Golden Flow Governs Scope
+Every major feature MUST strengthen this judge flow: Canadian business owes a USD supplier;
+establish reference USD/CAD; enter the actual bank or payment quote; expose FX spread and disclosed
+fees; identify estimated and unknown costs; calculate order profit and margin; simulate USD/CAD
+scenarios; cross the Profit Cliff; calculate Safe Bid; explain the decision plainly. Features that
+do not strengthen this flow MUST be deferred from the initial MVP.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Narrow, Resilient, Responsible MVP
+The product MUST use a one-page, solo-friendly architecture and remain deployable to Vercel from
+early development. A Bank of Canada rate MAY be used only as a reference, never as a guaranteed
+transaction rate; manual-rate fallback is mandatory and the golden flow MUST survive request
+failure. Secrets and credentials MUST never be committed. Sharia content MUST remain small,
+educational, responsibly sourced, cautious about legitimate scholarly disagreement, and MUST NOT
+be presented as certification or a fatwa.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## MVP Boundaries
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+The initial public MVP targets an approximately six-hour build. It MUST NOT include a database,
+authentication, Supabase, payment execution, bank connectivity, realtime FX streaming, an
+unnecessary backend, or AI financial advice. Reliability and polish of the golden flow take
+priority over additional features.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Delivery and Verification
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Initial public deployment is the first milestone. Before deployment, the production build and
+golden flow MUST work with manual rates and external-rate failure. After deployment, work MUST
+prioritize, in order: verification; Playwright golden-flow coverage; Profit Cliff and Safe Bid
+polish; professional UX; README and disclosures; sponsor credibility; pitch and rehearsal. Scope
+expansion comes only after these priorities are adequately addressed.
+
+Every specification, plan, task list, and review MUST verify currency direction, cost labels,
+scenario disclaimer, golden-flow contribution, deterministic calculation coverage, fallback
+behavior, secret handling, and MVP boundaries.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes conflicting project practices. Amendments MUST be documented in this
+file with an updated Sync Impact Report, semantic version, and amendment date. MAJOR versions cover
+incompatible principle removals or redefinitions; MINOR versions add or materially expand
+governance; PATCH versions clarify without changing meaning. As a solo project, the owner approves
+amendments and MUST review constitution compliance before merging or deploying material changes.
+Any exception MUST be explicitly documented with its rationale and remediation plan.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-09-05 | **Last Amended**: 2026-09-05
