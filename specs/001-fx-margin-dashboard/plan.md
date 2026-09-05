@@ -23,8 +23,9 @@ Canada Valet request; no production state, charting, form, or component librarie
 
 **Storage**: In-memory browser state only; no database, account, or required persistence
 
-**Testing**: Vitest for pure calculation unit tests, React Testing Library for dashboard behavior,
-and Playwright for the golden flow; TypeScript build and ESLint as static gates
+**Testing**: Before first deployment, only Vitest financial-formula tests, manual hand checks,
+ESLint, TypeScript validation, and the production build are blocking gates. React Testing Library
+coverage and Playwright golden-flow coverage are explicitly post-deployment work.
 
 **Target Platform**: Modern evergreen desktop and mobile browsers; static production deployment on
 Vercel
@@ -41,6 +42,10 @@ payment execution, provider integration, prediction, or generative AI
 
 **Scale/Scope**: One order, one reference rate, exactly two payment options, one selected scenario,
 and one concurrent browser session; no persistent multi-user scale requirement
+
+**Delivery Prerequisites**: Before implementation, confirm the intended Git branch. Before the
+release checkpoint, verify or minimally configure the GitHub remote and confirm that repository root
+`.` is the Vercel deployment path. These checks add no backend or deployment infrastructure.
 
 ## Constitution Check
 

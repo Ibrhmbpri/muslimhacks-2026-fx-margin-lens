@@ -10,8 +10,9 @@ description: "Critical-path implementation tasks for the FX Margin Lens MVP"
 **Prerequisites**: `plan.md`, `spec.md`, `research.md`, `data-model.md`, `contracts/`, `quickstart.md`
 
 **Delivery rule**: Complete Phases 1–8 for the first public deployment. Phase 9 begins only after the
-deployed golden flow passes its smoke test. Pre-deployment tests are limited to deterministic
-financial tests, the hand-check fixture, static validation, and the production build.
+deployed golden flow passes its smoke test. ONLY deterministic financial formula tests, manual hand
+checks, lint/TypeScript validation, and the production build may block first deployment. Playwright
+and broader component testing remain post-deployment.
 
 ## Format: `[ID] [P?] [Story] Description`
 
@@ -23,7 +24,7 @@ financial tests, the hand-check fixture, static validation, and the production b
 
 **Purpose**: Add only the directories and test runner required for the financial correctness gate.
 
-- [ ] T001 Create the planned `src/components/`, `src/domain/`, `src/services/`, `src/test/`, and `tests/` directories from `specs/001-fx-margin-dashboard/plan.md`
+- [ ] T001 Confirm the intended Git branch from repository root `.` before implementation, then create the planned `src/components/`, `src/domain/`, `src/services/`, `src/test/`, and `tests/` directories from `specs/001-fx-margin-dashboard/plan.md`
 - [ ] T002 Add Vitest and the `test` script required for pre-deployment formula tests in `package.json` and `package-lock.json`
 - [ ] T003 [P] Configure the Vitest environment and test inclusion rules in `vite.config.ts`
 - [ ] T004 [P] Add shared test initialization needed by the domain suite in `src/test/setup.ts`
@@ -125,7 +126,7 @@ costs; verify every sentence is supported by displayed calculations and contains
 
 - [ ] T028 [US5] Implement fixed-order deterministic lowest-disclosed-cost, reference difference, FX headroom, target-status, Safe Bid, and uncertainty statements in `src/domain/decisionLens.ts`
 - [ ] T029 [US5] Render the deterministic statements with invalid-state omissions and no provider guarantee in `src/components/DecisionLens.tsx`
-- [ ] T030 [P] [US5] Add the compact educational-only Sharia-aware note, scholarly-difference caution, qualified-guidance recommendation, and source links in `src/components/ShariaNote.tsx`
+- [ ] T030 [P] [US5] Select two concise credible Islamic-finance sources and add them to the compact educational-only Sharia-aware note with scholarly-difference caution and qualified-guidance language in `src/components/ShariaNote.tsx`, without expanding the section
 - [ ] T031 [P] [US5] Complete the visible KNOWN / ESTIMATED / UNKNOWN definitions and disclosed-total caveat in `src/components/TrustLegend.tsx`
 - [ ] T032 [US5] Wire `DecisionLens`, `TrustLegend`, `ShariaNote`, and general non-bank/non-advice/reference-rate disclaimers into the required hierarchy in `src/App.tsx` (FR-028–FR-035)
 
@@ -145,8 +146,8 @@ buildable, publicly reachable, and smoke-tested.
 - [ ] T036 Run the default-demo hand calculation in `specs/001-fx-margin-dashboard/quickstart.md` and confirm every displayed value against `src/test/fixtures.ts`
 - [ ] T037 Run `npm run test`, `npm run lint`, and `npm run build` from repository root `.` and fix only correctness or build-blocking failures in the affected source/configuration files
 - [ ] T038 Review `git diff` for credentials, currency-direction reversals, generated build output, and scope violations, then create a pre-deployment Git checkpoint from repository root `.`
-- [ ] T039 Push the reviewed checkpoint and current feature branch to the configured GitHub remote from repository root `.`
-- [ ] T040 Deploy the production build from repository root `.` to the configured Vercel project without adding secrets, a backend, or persistence
+- [ ] T039 Verify or minimally configure the intended GitHub remote from repository root `.`, then push the reviewed checkpoint and confirmed branch without adding Git workflow complexity
+- [ ] T040 Verify that repository root `.` is the intended Vercel deployment path, then link only if required and deploy the production build without adding secrets, a backend, persistence, or infrastructure
 - [ ] T041 Smoke-test the public Vercel URL against the default golden flow, manual-rate fallback, scenario disclaimer, Profit Cliff crossing, Safe Bid, mobile width, and refresh behavior; apply any release-blocking fix in the affected `src/` file and repeat T037–T040
 
 **MVP CHECKPOINT**: A judge can complete the entire decision story on the public URL in under three
@@ -260,6 +261,6 @@ Task T048: Complete product documentation in README.md
 
 - `[P]` means genuinely safe file-level parallelism, not merely theoretical concurrency.
 - User-story labels preserve traceability to `spec.md`; Phase 8/9 tasks are cross-cutting.
-- Git push and Vercel deployment require the repository's existing credentials/configuration and may
-  require user approval when executed; this task list does not assume that authority in advance.
+- Git push and Vercel deployment require credentials and may require user approval when executed;
+  T039 and T040 explicitly verify the minimum required configuration rather than assuming it exists.
 - Commit at the explicit pre-deployment checkpoint; additional commits may group coherent completed work.
