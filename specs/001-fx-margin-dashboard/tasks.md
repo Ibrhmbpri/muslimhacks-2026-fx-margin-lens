@@ -24,10 +24,10 @@ and broader component testing remain post-deployment.
 
 **Purpose**: Add only the directories and test runner required for the financial correctness gate.
 
-- [ ] T001 Confirm the intended Git branch from repository root `.` before implementation, then create the planned `src/components/`, `src/domain/`, `src/services/`, `src/test/`, and `tests/` directories from `specs/001-fx-margin-dashboard/plan.md`
-- [ ] T002 Add Vitest and the `test` script required for pre-deployment formula tests in `package.json` and `package-lock.json`
-- [ ] T003 [P] Configure the Vitest environment and test inclusion rules in `vite.config.ts`
-- [ ] T004 [P] Add shared test initialization needed by the domain suite in `src/test/setup.ts`
+- [X] T001 Confirm the intended Git branch from repository root `.` before implementation, then create the planned `src/components/`, `src/domain/`, `src/services/`, `src/test/`, and `tests/` directories from `specs/001-fx-margin-dashboard/plan.md`
+- [X] T002 Add Vitest and the `test` script required for pre-deployment formula tests in `package.json` and `package-lock.json`
+- [X] T003 [P] Configure the Vitest environment and test inclusion rules in `vite.config.ts`
+- [X] T004 [P] Add shared test initialization needed by the domain suite in `src/test/setup.ts`
 
 **Checkpoint**: `npm run test` can discover and execute a minimal TypeScript test.
 
@@ -40,12 +40,12 @@ every user story.
 
 **⚠️ CRITICAL**: No React story work begins until the formula tests pass.
 
-- [ ] T005 Define OrderEconomics, ReferenceRate, PaymentOption, CostItem, PaymentResult, Scenario, ScenarioResult, and typed invalid-result contracts in `src/domain/types.ts`
-- [ ] T006 [P] Create the exact editable demo inputs and hand-calculated expected outputs from `data-model.md` in `src/test/fixtures.ts`
-- [ ] T007 [P] Implement reusable finite-number, positive-money/rate, non-negative-cost, and target-margin validation rules in `src/domain/validation.ts`
-- [ ] T008 Write failing table-driven tests for conversion cost, reference value, spread impact, disclosed cost, profit, margin, Profit Cliff, Safe Bid, ranking, rounding independence, and invalid/impossible cases in `src/domain/fxMath.test.ts`
-- [ ] T009 Implement pure payment comparison, scenario, Profit Cliff, Safe Bid, and disclosed-cost ranking functions per `contracts/calculations.md` in `src/domain/fxMath.ts`
-- [ ] T010 Run `npm run test` from repository root `.` and reconcile every result with `src/test/fixtures.ts` before starting UI work
+- [X] T005 Define OrderEconomics, ReferenceRate, PaymentOption, CostItem, PaymentResult, Scenario, ScenarioResult, and typed invalid-result contracts in `src/domain/types.ts`
+- [X] T006 [P] Create the exact editable demo inputs and hand-calculated expected outputs from `data-model.md` in `src/test/fixtures.ts`
+- [X] T007 [P] Implement reusable finite-number, positive-money/rate, non-negative-cost, and target-margin validation rules in `src/domain/validation.ts`
+- [X] T008 Write failing table-driven tests for conversion cost, reference value, spread impact, disclosed cost, profit, margin, Profit Cliff, Safe Bid, ranking, rounding independence, and invalid/impossible cases in `src/domain/fxMath.test.ts`
+- [X] T009 Implement pure payment comparison, scenario, Profit Cliff, Safe Bid, and disclosed-cost ranking functions per `contracts/calculations.md` in `src/domain/fxMath.ts`
+- [X] T010 Run `npm run test` from repository root `.` and reconcile every result with `src/test/fixtures.ts` before starting UI work
 
 **Checkpoint**: Core financial formulas are deterministic, hand-verifiable, and independent of React.
 
@@ -58,11 +58,11 @@ every user story.
 **Independent Test**: Edit every order field and manual reference rate, then block the external
 request and confirm valid calculations remain possible with `1 USD = X CAD` labels.
 
-- [ ] T011 [US1] Replace starter counter state with typed demo-backed order, reference, option, selection, and scenario state in `src/App.tsx`
-- [ ] T012 [P] [US1] Build labeled editable USD invoice, CAD revenue, other CAD costs, and target-margin controls with field errors in `src/components/OrderInputs.tsx`
-- [ ] T013 [P] [US1] Implement the keyless `FXUSDCAD` response adapter, timeout, defensive parsing, and non-throwing failure result per `contracts/reference-rate.md` in `src/services/bankOfCanada.ts`
-- [ ] T014 [US1] Add the always-editable manual reference-rate control, optional Bank of Canada load action, source/effective-date label, and failure fallback in `src/components/OrderInputs.tsx`
-- [ ] T015 [US1] Wire `OrderInputs` into `src/App.tsx` so valid edits update canonical state and invalid fields suppress only dependent results (FR-002–FR-007)
+- [X] T011 [US1] Replace starter counter state with typed demo-backed order, reference, option, selection, and scenario state in `src/App.tsx`
+- [X] T012 [P] [US1] Build labeled editable USD invoice, CAD revenue, other CAD costs, and target-margin controls with field errors in `src/components/OrderInputs.tsx`
+- [X] T013 [P] [US1] Implement the keyless `FXUSDCAD` response adapter, timeout, defensive parsing, and non-throwing failure result per `contracts/reference-rate.md` in `src/services/bankOfCanada.ts`
+- [X] T014 [US1] Add the always-editable manual reference-rate control, optional Bank of Canada load action, source/effective-date label, and failure fallback in `src/components/OrderInputs.tsx`
+- [X] T015 [US1] Wire `OrderInputs` into `src/App.tsx` so valid edits update canonical state and invalid fields suppress only dependent results (FR-002–FR-007)
 
 **Checkpoint**: User Story 1 works offline with demo defaults and an unambiguous CAD-per-USD convention.
 
@@ -75,10 +75,10 @@ request and confirm valid calculations remain possible with `1 USD = X CAD` labe
 **Independent Test**: Enter two quotes and verify all six output measures by hand; confirm a tie and
 unknown intermediary fees never produce a guaranteed-cheapest claim.
 
-- [ ] T016 [P] [US2] Build reusable KNOWN, ESTIMATED, and UNKNOWN badges and amount/source rules in `src/components/TrustLegend.tsx`
-- [ ] T017 [US2] Build two editable option panels and comparison results for conversion cost, spread impact, known fees, disclosed cost, profit, and margin in `src/components/PaymentComparison.tsx`
-- [ ] T018 [US2] Add lowest-disclosed-cost/tie wording, negative-spread handling, and explicit unknown intermediary/receiving-bank rows in `src/components/PaymentComparison.tsx`
-- [ ] T019 [US2] Wire both payment options and pure comparison outputs into `src/App.tsx`, keeping unknown and estimated costs out of numeric disclosed totals (FR-008–FR-017)
+- [X] T016 [P] [US2] Build reusable KNOWN, ESTIMATED, and UNKNOWN badges and amount/source rules in `src/components/TrustLegend.tsx`
+- [X] T017 [US2] Build two editable option panels and comparison results for conversion cost, spread impact, known fees, disclosed cost, profit, and margin in `src/components/PaymentComparison.tsx`
+- [X] T018 [US2] Add lowest-disclosed-cost/tie wording, negative-spread handling, and explicit unknown intermediary/receiving-bank rows in `src/components/PaymentComparison.tsx`
+- [X] T019 [US2] Wire both payment options and pure comparison outputs into `src/App.tsx`, keeping unknown and estimated costs out of numeric disclosed totals (FR-008–FR-017)
 
 **Checkpoint**: The default comparison shows Bank C$830 versus Specialist C$520 disclosed cost and
 does not imply that unknown costs are zero.
@@ -92,11 +92,11 @@ does not imply that unknown costs are zero.
 **Independent Test**: Select FX Specialist and test 1.4009, 1.4010, and 1.4011; verify below/at/above
 cliff status, updated profit/margin, keyboard use, and the exact non-prediction disclaimer.
 
-- [ ] T020 [US3] Add accessible selected-option controls to `src/components/PaymentComparison.tsx` and synchronize the selected quote rate into scenario state in `src/App.tsx`
-- [ ] T021 [US3] Build synchronized range and numeric scenario-rate inputs plus live supplier cost, profit, margin, and target status in `src/components/ProfitCliff.tsx`
-- [ ] T022 [US3] Add prominent Profit Cliff value, remaining-headroom explanation, and above/at/below threshold cues that do not rely on color in `src/components/ProfitCliff.tsx`
-- [ ] T023 [US3] Keep the exact text "Scenario analysis — not an exchange-rate prediction." visible for every valid or invalid scenario state in `src/components/ProfitCliff.tsx`
-- [ ] T024 [US3] Connect selected-option scenario results from `src/domain/fxMath.ts` through `src/App.tsx` to `src/components/ProfitCliff.tsx` (FR-018–FR-023)
+- [X] T020 [US3] Add accessible selected-option controls to `src/components/PaymentComparison.tsx` and synchronize the selected quote rate into scenario state in `src/App.tsx`
+- [X] T021 [US3] Build synchronized range and numeric scenario-rate inputs plus live supplier cost, profit, margin, and target status in `src/components/ProfitCliff.tsx`
+- [X] T022 [US3] Add prominent Profit Cliff value, remaining-headroom explanation, and above/at/below threshold cues that do not rely on color in `src/components/ProfitCliff.tsx`
+- [X] T023 [US3] Keep the exact text "Scenario analysis — not an exchange-rate prediction." visible for every valid or invalid scenario state in `src/components/ProfitCliff.tsx`
+- [X] T024 [US3] Connect selected-option scenario results from `src/domain/fxMath.ts` through `src/App.tsx` to `src/components/ProfitCliff.tsx` (FR-018–FR-023)
 
 **Checkpoint**: The judge can select either quote and visibly cross its Profit Cliff interactively.
 
@@ -109,9 +109,9 @@ cliff status, updated profit/margin, keyboard use, and the exact non-prediction 
 **Independent Test**: With FX Specialist at 1.3750, verify C$32,409.09; at 1.4100 verify C$33,204.55;
 then enter an invalid margin and confirm the number is replaced by corrective guidance.
 
-- [ ] T025 [US4] Build the prominent CAD Safe Bid result, known-cost basis, plain-language minimum-price sentence, and uncertainty qualifier in `src/components/SafeBid.tsx`
-- [ ] T026 [US4] Add invalid-margin and impossible-result rendering that never exposes NaN, Infinity, or a fabricated amount in `src/components/SafeBid.tsx`
-- [ ] T027 [US4] Wire the selected scenario Safe Bid result from `src/domain/fxMath.ts` through `src/App.tsx` into `src/components/SafeBid.tsx` (FR-024–FR-027)
+- [X] T025 [US4] Build the prominent CAD Safe Bid result, known-cost basis, plain-language minimum-price sentence, and uncertainty qualifier in `src/components/SafeBid.tsx`
+- [X] T026 [US4] Add invalid-margin and impossible-result rendering that never exposes NaN, Infinity, or a fabricated amount in `src/components/SafeBid.tsx`
+- [X] T027 [US4] Wire the selected scenario Safe Bid result from `src/domain/fxMath.ts` through `src/App.tsx` into `src/components/SafeBid.tsx` (FR-024–FR-027)
 
 **Checkpoint**: Safe Bid tracks every valid scenario change and clearly states which known costs it uses.
 
@@ -124,11 +124,11 @@ then enter an invalid margin and confirm the number is replaced by corrective gu
 **Independent Test**: Exercise both winners, a tie, above/below target, invalid Safe Bid, and unknown
 costs; verify every sentence is supported by displayed calculations and contains no prediction/advice.
 
-- [ ] T028 [US5] Implement fixed-order deterministic lowest-disclosed-cost, reference difference, FX headroom, target-status, Safe Bid, and uncertainty statements in `src/domain/decisionLens.ts`
-- [ ] T029 [US5] Render the deterministic statements with invalid-state omissions and no provider guarantee in `src/components/DecisionLens.tsx`
-- [ ] T030 [P] [US5] Select two concise credible Islamic-finance sources and add them to the compact educational-only Sharia-aware note with scholarly-difference caution and qualified-guidance language in `src/components/ShariaNote.tsx`, without expanding the section
-- [ ] T031 [P] [US5] Complete the visible KNOWN / ESTIMATED / UNKNOWN definitions and disclosed-total caveat in `src/components/TrustLegend.tsx`
-- [ ] T032 [US5] Wire `DecisionLens`, `TrustLegend`, `ShariaNote`, and general non-bank/non-advice/reference-rate disclaimers into the required hierarchy in `src/App.tsx` (FR-028–FR-035)
+- [X] T028 [US5] Implement fixed-order deterministic lowest-disclosed-cost, reference difference, FX headroom, target-status, Safe Bid, and uncertainty statements in `src/domain/decisionLens.ts`
+- [X] T029 [US5] Render the deterministic statements with invalid-state omissions and no provider guarantee in `src/components/DecisionLens.tsx`
+- [X] T030 [P] [US5] Select two concise credible Islamic-finance sources and add them to the compact educational-only Sharia-aware note with scholarly-difference caution and qualified-guidance language in `src/components/ShariaNote.tsx`, without expanding the section
+- [X] T031 [P] [US5] Complete the visible KNOWN / ESTIMATED / UNKNOWN definitions and disclosed-total caveat in `src/components/TrustLegend.tsx`
+- [X] T032 [US5] Wire `DecisionLens`, `TrustLegend`, `ShariaNote`, and general non-bank/non-advice/reference-rate disclaimers into the required hierarchy in `src/App.tsx` (FR-028–FR-035)
 
 **Checkpoint**: Decision language is entirely deterministic, uncertainty remains explicit, and the
 educational content makes no certification or fatwa claim.
@@ -140,12 +140,12 @@ educational content makes no certification or fatwa claim.
 **Purpose**: Finish only the cross-story work required to make the complete judge flow polished,
 buildable, publicly reachable, and smoke-tested.
 
-- [ ] T033 Implement the responsive one-page visual system, typography, spacing, cards, status treatments, focus states, and mobile stacking in `src/App.css` and `src/index.css`
-- [ ] T034 Remove unused starter assets/imports and finalize semantic section order, page title, metadata, and favicon references in `src/App.tsx`, `src/main.tsx`, and `index.html`
-- [ ] T035 Execute the full early vertical slice from `specs/001-fx-margin-dashboard/quickstart.md`—enter order data → compare options → select one → move scenario → cross Profit Cliff → verify Safe Bid → read Decision Lens—and record any fixes in the affected `src/` files
-- [ ] T036 Run the default-demo hand calculation in `specs/001-fx-margin-dashboard/quickstart.md` and confirm every displayed value against `src/test/fixtures.ts`
-- [ ] T037 Run `npm run test`, `npm run lint`, and `npm run build` from repository root `.` and fix only correctness or build-blocking failures in the affected source/configuration files
-- [ ] T038 Review `git diff` for credentials, currency-direction reversals, generated build output, and scope violations, then create a pre-deployment Git checkpoint from repository root `.`
+- [X] T033 Implement the responsive one-page visual system, typography, spacing, cards, status treatments, focus states, and mobile stacking in `src/App.css` and `src/index.css`
+- [X] T034 Remove unused starter assets/imports and finalize semantic section order, page title, metadata, and favicon references in `src/App.tsx`, `src/main.tsx`, and `index.html`
+- [X] T035 Execute the full early vertical slice from `specs/001-fx-margin-dashboard/quickstart.md`—enter order data → compare options → select one → move scenario → cross Profit Cliff → verify Safe Bid → read Decision Lens—and record any fixes in the affected `src/` files
+- [X] T036 Run the default-demo hand calculation in `specs/001-fx-margin-dashboard/quickstart.md` and confirm every displayed value against `src/test/fixtures.ts`
+- [X] T037 Run `npm run test`, `npm run lint`, and `npm run build` from repository root `.` and fix only correctness or build-blocking failures in the affected source/configuration files
+- [X] T038 Review `git diff` for credentials, currency-direction reversals, generated build output, and scope violations, then create a pre-deployment Git checkpoint from repository root `.`
 - [ ] T039 Verify or minimally configure the intended GitHub remote from repository root `.`, then push the reviewed checkpoint and confirmed branch without adding Git workflow complexity
 - [ ] T040 Verify that repository root `.` is the intended Vercel deployment path, then link only if required and deploy the production build without adding secrets, a backend, persistence, or infrastructure
 - [ ] T041 Smoke-test the public Vercel URL against the default golden flow, manual-rate fallback, scenario disclaimer, Profit Cliff crossing, Safe Bid, mobile width, and refresh behavior; apply any release-blocking fix in the affected `src/` file and repeat T037–T040
