@@ -40,6 +40,9 @@ export function OrderInputs({ order, reference, errors, onOrderChange, onReferen
             ? `Bank of Canada daily reference · ${reference.observationDate}. Not a guaranteed transaction rate.`
             : reference.message ?? 'Manual demo reference · always editable.'}
         </p>
+        {reference.source === 'bank-of-canada' && (
+          <p className="demo-timing-note">Demo provider quotes may not be contemporaneous with a loaded Bank of Canada reference rate.</p>
+        )}
       </div>
     </section>
   )

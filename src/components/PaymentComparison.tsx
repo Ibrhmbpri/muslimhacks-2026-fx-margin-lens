@@ -41,8 +41,8 @@ export function PaymentComparison({ options, results, selectedId, ranking, onOpt
                   <Metric label="FX spread vs reference" value={formatCad(result.value.fxSpreadImpactCad)} tone={result.value.fxSpreadImpactCad <= 0 ? 'good' : undefined} />
                   <Metric label="Known fixed fee" value={formatCad(option.knownFixedFeeCad)} />
                   <Metric label="Disclosed cost vs reference" value={formatCad(result.value.disclosedCostVsReferenceCad)} strong />
-                  <Metric label="Order profit" value={formatCad(result.value.profitCad)} strong />
-                  <Metric label="Profit margin" value={formatPercent(result.value.margin)} strong />
+                  <Metric label="Order profit" value={result.value.profitCad < 0 ? `Loss · ${formatCad(result.value.profitCad)}` : formatCad(result.value.profitCad)} strong tone={result.value.profitCad < 0 ? 'danger' : undefined} />
+                  <Metric label="Profit margin" value={result.value.margin < 0 ? `Negative · ${formatPercent(result.value.margin)}` : formatPercent(result.value.margin)} strong tone={result.value.margin < 0 ? 'danger' : undefined} />
                 </dl>
               ) : <div className="invalid-box">Complete the highlighted inputs to calculate this option.</div>}
               {option.uncertainCosts.map((cost) => <UnknownCost key={cost.label} item={cost} />)}
@@ -63,6 +63,6 @@ function MiniNumber({ label, value, prefix, suffix, step = '0.01', onChange }: {
   return <label className="field compact-field"><span className="field-label">{label}</span><span className="input-shell">{prefix && <span>{prefix}</span>}<input type="number" min="0" step={step} value={Number.isFinite(value) ? value : ''} onChange={(e) => onChange(e.target.value === '' ? Number.NaN : Number(e.target.value))} />{suffix && <span>{suffix}</span>}</span></label>
 }
 
-function Metric({ label, value, strong, tone }: { label: string; value: string; strong?: boolean; tone?: 'good' }) {
+function Metric({ label, value, strong, tone }: { label: string; value: string; strong?: boolean; tone?: 'good' | 'danger' }) {
   return <div className={strong ? 'strong-metric' : ''}><dt>{label}</dt><dd className={tone}>{value}</dd></div>
 }

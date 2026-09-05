@@ -167,7 +167,7 @@ minutes. Stop scope expansion and preserve this working deployment.
 - [ ] T047 [P] Add focused component tests for accessible threshold states and invalid Safe Bid output in `src/components/ProfitCliff.test.tsx` and `src/components/SafeBid.test.tsx`
 - [ ] T048 [P] Replace the starter documentation with product purpose, setup, formulas, disclosures, source provenance, deployment link, and limitation notes in `README.md`
 - [ ] T049 Audit keyboard flow, visible focus, labels, live regions, contrast, zoom, reduced motion, and color-independent status; fix findings in `src/components/` and `src/App.css`
-- [ ] T050 Polish only issues observed in the deployed golden flow—copy hierarchy, spacing, responsive layout, and professional presentation—in `src/App.tsx`, `src/App.css`, and `src/index.css`
+- [X] T050 Polish only issues observed in the deployed golden flow—copy hierarchy, spacing, responsive layout, and professional presentation—in `src/App.tsx`, `src/App.css`, and `src/index.css`
 - [ ] T051 Run `$speckit-converge` against `specs/001-fx-margin-dashboard/spec.md`, `plan.md`, and this `tasks.md`, then append any genuine remaining work to `specs/001-fx-margin-dashboard/tasks.md`
 - [ ] T052 Re-run all test, lint, build, quickstart, and public smoke checks from repository root `.`; commit and push the verified final state to the configured GitHub remote
 
